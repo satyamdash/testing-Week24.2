@@ -1,6 +1,6 @@
-import {describe, expect, test, it} from '@jest/globals';
-import request from "supertest";
-import { app } from "../index"
+import { expect, describe ,it } from 'vitest'
+import request from 'supertest';
+import {app} from '../src';
 
 describe("POST /sum", () => {
   it("should return the sum of two numbers", async () => {
@@ -14,7 +14,7 @@ describe("POST /sum", () => {
 
     it("should return 411 if no inputs are provided", async () => {
       const res = await request(app).post("/sum").send({});
-      expect(res.statusCode).toBe(500);
+      expect(res.statusCode).toBe(411);
       expect(res.body.message).toBe("Incorrect inputs");
     });
 
@@ -37,7 +37,7 @@ describe("GET /sum", () => {
   it("should return 411 if no inputs are provided", async () => {
     const res = await request(app)
       .get("/sum").send();
-    expect(res.statusCode).toBe(500);
+    expect(res.statusCode).toBe(411);
   });
 
 });
